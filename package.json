@@ -1,0 +1,32 @@
+{
+  "name": "lxi18n",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/loftuxab/lxi18n.git"
+  },
+  "keywords": [
+    "react",
+    "internationalisation",
+    "i18n"
+  ],
+  "author": "Bhagya Silva",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/loftuxab/lxi18n/issues"
+  },
+  "homepage": "https://github.com/loftuxab/lxi18n#readme",
+  "dependencies": {
+    "immutability-helper": "^2.2.2",
+    "isomorphic-fetch": "^2.2.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.5",
+    "redux": "^3.6.0"
+  }
+}
