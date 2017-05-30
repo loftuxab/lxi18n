@@ -1,6 +1,4 @@
-import React, {PropTypes, Component} from 'react';
-import { Provider, connect } from 'react-redux'
-
+import React from 'react';
 
 export let i18nUtils = {
     normaliseLang : (lang /*:string*/) => {
@@ -21,9 +19,16 @@ export class LXi18n {
         this.localisations = localisations;
     }
 
-    localise (key, defaultValue, options) {
+    localise (key, defaultValue, options, localisations) {
         let currentLanguageKey = this.currentLanguageKey;
-        let localisationBundle = this.localisations[currentLanguageKey];
+        let localisationBundle;
+
+        if(localisations){
+            localisationBundle = localisations[currentLanguageKey];
+        }else{
+            localisationBundle = this.localisations[currentLanguageKey];
+        }
+
         let message;
         if(localisationBundle != null){
             message = localisationBundle[key];
