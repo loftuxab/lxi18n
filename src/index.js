@@ -1,3 +1,4 @@
+//@flow
 "use strict";
 
 import React from 'react';
@@ -13,15 +14,18 @@ export let i18nUtils = {
 };
 
 export class LXi18n {
-    constructor(currentLanguageKey){
+    localisations: any;
+    currentLanguageKey: String;
+
+    constructor(currentLanguageKey: String){
         this.currentLanguageKey = currentLanguageKey;
     }
 
-    setLocalisations(localisations){
+    setLocalisations(localisations: any){
         this.localisations = localisations;
     }
 
-    localise (key, defaultValue, options, localisations) {
+    localise (key: String, defaultValue: String, options: ?any, localisations: ?any): String {
         let currentLanguageKey = this.currentLanguageKey;
         let localisationBundle;
 
@@ -31,7 +35,7 @@ export class LXi18n {
             localisationBundle = this.localisations[currentLanguageKey];
         }
 
-        let message;
+        let message: String;
         if(localisationBundle != null){
             message = localisationBundle[key];
         }
@@ -53,14 +57,14 @@ export class LXi18n {
         let browserLanguage = i18nUtils.normaliseLang(navigator.languages && navigator.languages.length > 0 ? navigator.languages[0] : navigator.language || navigator.userLanguage);
         languageCode = browserLanguage;
 
-        let localisationBundle = localisations[browserLanguage];
+        let localisationBundle = this.localisations[browserLanguage];
         if (localisationBundle == undefined && browserLanguage.indexOf("-") != -1){
             //attempt to downgrade language
             let primaryLocaleCode = browserLanguage.split("-")[0];
             localisationBundle = localisations[primaryLocaleCode];
             if (localisationBundle == undefined) {
                 //language not found, revert to default
-                languageCode = options.primaryLanguage;
+                languageCode = this.options.primaryLanguage;
             }else{
                 languageCode = primaryLocaleCode;
             }
@@ -69,7 +73,7 @@ export class LXi18n {
 
     }
 
-    localiseTitle(titleKey, defaultTitle) {
+    localiseTitle(titleKey: String, defaultTitle:String) {
         document.title = this.localise(titleKey, defaultTitle);
     }
 
