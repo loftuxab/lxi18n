@@ -15,17 +15,19 @@ export let i18nUtils = {
 
 export class LXi18n {
     localisations: any;
-    currentLanguageKey: String;
+    currentLanguageKey: string;
 
-    constructor(currentLanguageKey: String){
+    constructor(currentLanguageKey: string, localisations: ?any){
         this.currentLanguageKey = currentLanguageKey;
-    }
-
-    setLocalisations(localisations: any){
         this.localisations = localisations;
     }
 
-    localise (key: String, defaultValue: String, options: ?any, localisations: ?any): String {
+    setLocalisations(localisations: any):LXi18n{
+        this.localisations = localisations;
+        return this;
+    }
+
+    localise (key: string, defaultValue: string, options: ?any, localisations: ?any): string {
         let currentLanguageKey = this.currentLanguageKey;
         let localisationBundle;
 
@@ -35,7 +37,7 @@ export class LXi18n {
             localisationBundle = this.localisations[currentLanguageKey];
         }
 
-        let message: String;
+        let message: string;
         if(localisationBundle != null){
             message = localisationBundle[key];
         }
@@ -73,7 +75,7 @@ export class LXi18n {
 
     }
 
-    localiseTitle(titleKey: String, defaultTitle:String) {
+    localiseTitle(titleKey: string, defaultTitle:string) {
         document.title = this.localise(titleKey, defaultTitle);
     }
 
